@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>瀑布流</title>
+    <style>
+        body{
+            padding: 0;
+            margin:0;
+            background:rgba(0,0,0,0.5);
+        }
+        p{
+            padding: 0;
+            margin: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+
+
+
+        .Hdr{
+            background:rgb(240,239,238);
+            width: 1280px;
+            margin: 0 auto;
+        }
+
+
+
+        .header{
+            background:url("img/Logo.png") no-repeat 10.937% center,
+            white;
+            height: 98px;
+            line-height: 98px;
+            padding-bottom: 8px;
+            box-sizing:border-box;
+            box-shadow:0 2px 2px -2px black;
+            margin-bottom:40px ;
+        }
+        .header a img,.header input,.header div{
+            vertical-align:middle;
+        }
+        .header>a:first-child img{
+            margin: 0 0 0 29%;
+        }
+        .header input{
+            margin-left: 3.75%;
+            background:rgb(240,239,238);
+            border: 1px rgba(0,0,0,0.1) solid;
+            border-right: none;
+            width: 30.468%;
+            height: 30px;
+            border-radius: 5px 0 0 5px;
+        }
+        .header input:focus{outline:none}
+        .header div{
+            display: inline-block;
+            width: 2.343%;
+            height: 32px;
+            background:rgb(240,239,238);
+            border-radius: 0 5px 5px 0;
+            border: 1px rgba(0,0,0,0.1) solid;
+            border-left: none;
+            line-height: 32px;
+            text-align: center;
+            margin:0 6.56% 0 0;
+        }
+        .header span{
+            color: rgba(0,0,0,0.5);
+            margin: 0 0 0 1.17%;
+        }
+
+
+
+
+        .div{
+            margin:34px 0 0 0;
+            position: relative;
+        }
+        .div>div{
+            padding: 16px 17px 0 0;
+            width: 240px;
+            float: left;
+        }
+        .div>div>div{
+            background: white;
+            box-shadow: 0 0 4px rgba(0,0,0,0.3);
+        }
+        .div>div>div a,.div>div>div p{
+            color:rgba(0,0,0,0.5);
+        }
+        .div>div img{
+            display: block;
+        }
+        .div>div>div a:hover{
+            color:black;
+        }
+        .div>div>div>div{
+            padding: 10px 20px;
+        }
+        .div>div>div>div:nth-of-type(1){
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+        }
+        .div>div>div>div:nth-of-type(2)>img:nth-of-type(1){
+            margin-right: 80px;
+        }
+        .a1{
+            font-size: 18px;
+            color: rgba(0,0,0,0.8);
+            font-weight: bold;
+            padding:5px 0 0 0;
+        }
+        .a2{
+            font-size: 14px;
+            line-height: 25px;
+            padding:5px 0 10px 0;
+        }
+        .a2 img{
+            margin-right: 10px;
+        }
+        .a3{
+            font-size: 13px;
+            line-height: 12px;
+        }
+
+
+        .footer{
+            clear: both;
+            padding: 50px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .footer span{
+            margin-left:15px;
+            color: rgba(0,0,0,0.5);
+        }
+        @media  (max-width:480px){
+            .Hdr{
+                width:480px;
+                background: white;
+            }
+            .header{
+                background:url("img/Logo.png") no-repeat center center,
+                white;
+                box-shadow:none;
+            }
+            .header input,.header>a:nth-of-type(2),.header>a:nth-of-type(3){
+                display: none;
+            }
+            .div>div{
+                float: none;
+            }
+        }
+        @media  (max-width:840px){
+            .Hdr{
+                width:100%;
+            }
+            .header{
+                background:url("img/Logo.png") no-repeat center center,
+                white;
+
+            }
+            .header input,.header>a:nth-of-type(2),.header>a:nth-of-type(3){
+                display: none;
+            }
+            .header>a:first-child img{
+                margin: 0 0 0 15%;
+            }
+            .header div{
+                width:60px;
+                border:none;
+                margin:0 0 0 50%;
+                height: 35px;
+                border-radius: 8px;
+            }
+        }
+        @media  (max-width:1280px){
+            .Hdr{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="Hdr">
+        <header class="header">
+            <a href=""><img src="img/menu.png" alt=""></a>
+            <input type="text"><div><a href=""><img src="img/Shape1.png" alt=""></a></div>
+            <a href=""><img src="img/Layer2.png" alt=""></a>
+            <a href=""><span>Welcome John</span></a>
+        </header>
+        <div class="div">
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer5.png" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">Movies</a></p>
+                        <p class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer6.png"  alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">Movies</a></p>
+                        <p class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer7.png" style="height:130px;width: 240px" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">Animation</a></p>
+                        <p  class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer8.png" style="height:220px;width: 240px" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">3D Animation</a></p>
+                        <p class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer5.png" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">Movies</a></p>
+                        <p class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer6.png"  alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">Movies</a></p>
+                        <p class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer7.png" style="height:130px;width: 240px" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">Animation</a></p>
+                        <p  class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer8.png" style="height:220px;width: 240px" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">3D Animation</a></p>
+                        <p class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer5.png" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">Movies</a></p>
+                        <p class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer6.png"  alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">Movies</a></p>
+                        <p class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer7.png" style="height:130px;width: 240px" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">Animation</a></p>
+                        <p  class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer8.png" style="height:220px;width: 240px" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">3D Animation</a></p>
+                        <p class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer5.png" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">Movies</a></p>
+                        <p class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer6.png" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">Movies</a></p>
+                        <p class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer7.png" style="height:130px;width: 240px" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">Animation</a></p>
+                        <p  class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer8.png"  style="height:220px;width: 240px" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">3D Animation</a></p>
+                        <p class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer5.png" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">Movies</a></p>
+                        <p class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer6.png" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">Movies</a></p>
+                        <p class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer7.png" style="height:130px;width: 240px" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">Animation</a></p>
+                        <p  class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl">
+                <div>
+                    <img src="img/Layer8.png"  style="height:220px;width: 240px" alt="">
+                    <div>
+                        <p class="a1"><a href="">Animation films</a></p>
+                        <p class="a2"><a href=""><img src="img/location.png" alt="">3D Animation</a></p>
+                        <p class="a3">Lorem lpsum issimply dummy text of the printinh & typesetting industry.</p>
+                    </div>
+                    <div>
+                        <img src="img/Layer5copy4.png" alt="">
+                        <a href=""><img src="img/Shape2.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pbl"><div><img src="img/Layer8.png"  style="height:220px;width: 240px" alt=""></div></div>
+        </div>
+        <footer class="footer">
+            <img src="img/Shape3.png" alt=""><span>Page Loading</span>
+        </footer>
+    </div>
+    <script>
+        window.onload = function(){
+            waterfall('div','pbl');
+            var dataInt = {"data":[
+                    { "src":'http://placehold.it/240x200/'},
+                    { "src":'http://placehold.it/240x300/'},
+                    { "src":'http://placehold.it/240x250/000000.png/ffffff?text=yrc'},
+                    { "src":'http://placehold.it/240x130/000000/121212'},
+                    { "src":'http://placehold.it/240x115/'},
+                    { "src":'http://placehold.it/240x250/454585.png/ffffff?text=zqj'},
+                    { "src":'http://placehold.it/240x170/'},
+                    { "src":'http://placehold.it/240x130/00fff0/569875'}
+                ]
+            }
+            window.onscroll = function(){
+                if(checkScrollSlide()){
+                    var oParent = document.getElementsByClassName('div')[0];
+                    for (var i = 0; i < dataInt.data.length; i++) {
+                        var oBox = document.createElement('div');
+                        oBox.className = 'pbl';
+
+                        oParent.appendChild(oBox);
+                        var oPic = document.createElement('div');
+                        oBox.appendChild(oPic);
+                        var oImg = document.createElement('img');
+                        oImg.setAttribute('src',dataInt.data[i].src);
+                        oPic.appendChild(oImg);
+                    }
+                    waterfall('div','pbl');
+                }
+            }
+        }
+
+        function checkScrollSlide(){
+            var footer=document.getElementsByTagName("footer")[0];
+            var lastBoxH = footer.offsetTop + Math.floor(footer.offsetHeight-10);
+            var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            var heigeht =  window.innerHeight;
+            return (lastBoxH<scrollTop+heigeht)?true:false;
+        }
+
+        function waterfall(parent,box){
+
+            var oParent = document.getElementsByClassName(parent)[0];
+            var oBoxs = getByClass(oParent,box);
+            var Hdr=document.getElementsByClassName("Hdr")[0];
+
+            var oBoxW = oBoxs[0].offsetWidth;
+            var cols = Math.floor(Hdr.clientWidth/oBoxW);
+
+            oParent.style.cssText += 'width:'+oBoxW*cols+'px;margin:0 auto;';
+
+            var hArr = new Array;
+            var a;
+
+            for (var i =0;i<oBoxs.length;i++) {
+                if (i<cols) {
+                    hArr.push(oBoxs[i].offsetHeight);
+                } else{
+                    var minH = Math.min.apply(null,hArr);
+                    var minHIndex = getMinIndex(hArr,minH);
+
+                    oBoxs[i].style.cssText += 'position:absolute;'+'top:'+minH+'px;'+'left:'+oBoxW*minHIndex+'px;';
+                    hArr[minHIndex]+=oBoxs[i].offsetHeight;
+                    if(i===(oBoxs.length-1)){
+                        a=Math.max.apply(null,hArr);
+                        oParent.style.cssText += 'height:'+a+'px;';
+                    }
+                }
+            }
+        }
+
+        function getByClass(parent,clsName){
+            var boxArr = new Array;
+            var oElements = parent.getElementsByTagName('*');
+
+            for (var i=0;i<oElements.length;i++) {
+                if(oElements[i].className==clsName){
+                    boxArr.push(oElements[i]);
+                }
+            }
+            return boxArr;
+
+        }
+
+        function getMinIndex(arr,val){
+            for (var i = 0; i < arr.length; i++) {
+                if(arr[i]==val){
+                    return i;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
